@@ -60,6 +60,25 @@ app.post("/api/v1/longshotleague/new_team", (request, response) => {
     });
 });
 
+app.patch("/api/v1/longshotleague/team/", (request, response) => {
+  let teamScore = request.body;
+  {
+    database("teams")
+      .where("name", teamScore.name)
+      .update({ points: teamScore.points })
+      .then(numEdited => {
+        if (numEdited !== 0) {
+          response
+            .status(202)
+            .json(`Total of ${teamScore.name} sucessfully updated!`);
+        }
+      })
+      .catch(error => {
+        response.status(500).json({ error: error.message });
+      });
+  }
+});
+
 app.listen(app.get("port"), () => {
   console.log(`visitor tracker is running on ${app.get("port")}.`);
 });
