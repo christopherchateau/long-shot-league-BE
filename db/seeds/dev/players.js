@@ -1,18 +1,18 @@
-const beers = require("../../../public/cleaner.js");
-const styles = require("../../scraped-data/style-descriptions.js");
+import players from "../../data/players.js";
+import teams from "../../data/teams.js";
 
-const createStyles = (knex, style) => {
-  return knex("beer_styles")
+const createStandings = (knex, player) => {
+  return knex("players")
     .insert(
       {
-        style_name: style.style_name,
-        description: style.description
+        name: player.name,
+        bonus_points: player.bonus
       },
-      ["style_name", "id"]
+      ["name", "id"]
     )
-    .then(style => {
-      let beerPromises = beers.map(beer => {
-        if (beer.beerStyle === style[0].style_name) {
+    .then(player => {
+      let teamPromises = teams.map(team => {
+        if (team.beerStyle === style[0].style_name) {
           return knex("beers").insert({
             name: beer.name,
             abv: beer.abv,
@@ -27,12 +27,12 @@ const createStyles = (knex, style) => {
 };
 
 exports.seed = function(knex, Promise) {
-  return knex("beers")
+  return knex("teams")
     .del()
-    .then(() => knex("beer_styles").del())
+    .then(() => knex("players").del())
     .then(() => {
       const stylePromises = styles.map(style => {
-        return createStyles(knex, style);
+        return createStandigs(knex, style);
       });
       return Promise.all(stylePromises);
     })
