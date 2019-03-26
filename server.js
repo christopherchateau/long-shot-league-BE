@@ -44,7 +44,7 @@ app.post("/api/v1/longshotleague/new_team", (request, response) => {
   database("teams")
     .insert({ ...newTeam }, "id")
     .then(team => {
-      response.status(201).json("new player successfully added!");
+      response.status(201).json("new team successfully added!");
     })
     .catch(error => {
       response.status(500).json({ error: error.message });
