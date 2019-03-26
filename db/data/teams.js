@@ -1,4 +1,4 @@
-export const teams = [
+const teams = [
   {
     name: "Duke",
     eliminated: false,
@@ -448,3 +448,6 @@ export const teams = [
     draftedBy: "Brewers"
   }
 ];
+
+module.exports = teams;
+

@@ -1,5 +1,5 @@
-import players from "../../data/players.js";
-import teams from "../../data/teams.js";
+const players = require("../../data/players.js");
+const teams = require("../../data/teams.js");
 
 const createStandings = (knex, player) => {
   return knex("players")
@@ -12,17 +12,17 @@ const createStandings = (knex, player) => {
     )
     .then(player => {
       let teamPromises = teams.map(team => {
-        if (team.beerStyle === style[0].style_name) {
-          return knex("beers").insert({
-            name: beer.name,
-            abv: beer.abv,
-            description: beer.description,
-            is_available: beer.availability,
-            style_id: style[0].id
+        if (team.draftedBy === player[0].name) {
+          return knex("teams").insert({
+            name: team.name,
+            drafted_by: player[0].name,
+            points: team.points,
+            is_eliminated: team.eliminated,
+            player_id: player[0].id
           });
         }
       });
-      return Promise.all(beerPromises);
+      return Promise.all(teamPromises);
     });
 };
 
@@ -31,10 +31,10 @@ exports.seed = function(knex, Promise) {
     .del()
     .then(() => knex("players").del())
     .then(() => {
-      const stylePromises = styles.map(style => {
-        return createStandigs(knex, style);
+      const playerPromises = players.map(player => {
+        return createStandings(knex, player);
       });
-      return Promise.all(stylePromises);
+      return Promise.all(playerPromises);
     })
     .then(() => console.log("Great Success!!"))
     .catch(error => console.log(`Error seeding data: ${error}`));

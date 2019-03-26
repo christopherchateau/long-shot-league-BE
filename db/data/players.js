@@ -1,4 +1,4 @@
-export const players = [
+const players = [
   {
     name: "Chris",
     bonus: 3,
@@ -80,3 +80,5 @@ export const players = [
     teams: ["LSU", "Oregon", "Oklahoma", "Northeastern"]
   }
 ];
+
+module.exports = players;
