@@ -4,9 +4,17 @@ const bodyParser = require("body-parser");
 const environment = process.env.NODE_ENV || "development";
 const config = require("./knexfile")[environment];
 const database = require("knex")(config);
+// const cors = require('cors');
 
 app.use(express.static("public"));
 app.use(bodyParser.json());
+// app.use(cors({origin: 'http://localhost:8888'}));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.set("port", process.env.PORT || 3001);
 
 app.get("/api/v1/longshotleague/players", (request, response) => {
@@ -49,12 +57,6 @@ app.post("/api/v1/longshotleague/new_team", (request, response) => {
     .catch(error => {
       response.status(500).json({ error: error.message });
     });
-});
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
 });
 
 app.listen(app.get("port"), () => {
