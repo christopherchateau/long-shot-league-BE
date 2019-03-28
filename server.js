@@ -61,16 +61,17 @@ app.post("/api/v1/longshotleague/new_team", (request, response) => {
 });
 
 app.patch("/api/v1/longshotleague/team/", (request, response) => {
-  let teamScore = request.body;
+  let teamData = request.body;
   {
     database("teams")
-      .where("name", teamScore.name)
-      .update({ points: teamScore.points })
+      .where("name", teamData.name)
+      .update({ points: teamData.points })
+      .update({ is_eliminated: teamData.is_eliminated })
       .then(numEdited => {
         if (numEdited !== 0) {
           response
             .status(202)
-            .json(`Total of ${teamScore.name} sucessfully updated!`);
+            .json(`Total of ${teamData.name} sucessfully updated!`);
         }
       })
       .catch(error => {
