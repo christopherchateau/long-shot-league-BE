@@ -26,38 +26,18 @@ app.get("/api/v1/longshotleague/players", (request, response) => {
     });
 });
 
-app.post("/api/v1/longshotleague/new_player", (request, response) => {
-  const newPlayer = request.body;
+// app.post("/api/v1/longshotleague/new_player", (request, response) => {
+//   const newPlayer = request.body;
 
-  database("players")
-    .insert({ ...newPlayer }, "id")
-    .then(player => {
-      response.status(201).json("new player successfully added!");
-    })
-    .catch(error => {
-      response.status(500).json({ error: error.message });
-    });
-});
-
-app.patch("/api/v1/longshotleague/player/", (request, response) => {
-  // let playerData = request.body;
-  // {
-  //   database("players")
-  //     .where("name", playerData.name)
-  //     .update({ points: playerData.points })
-  //     .update({ is_eliminated: playerData.is_eliminated })
-  //     .then(numEdited => {
-  //       if (numEdited !== 0) {
-  //         response
-  //           .status(202)
-  //           .json(`Total of ${playerData.name} sucessfully updated!`);
-  //       }
-  //     })
-  //     .catch(error => {
-  //       response.status(500).json({ error: error.message });
-  //     });
-  // }
-});
+//   database("players")
+//     .insert({ ...newPlayer }, "id")
+//     .then(player => {
+//       response.status(201).json("new player successfully added!");
+//     })
+//     .catch(error => {
+//       response.status(500).json({ error: error.message });
+//     });
+// });
 
 app.get("/api/v1/longshotleague/teams", (request, response) => {
   database("teams")
@@ -67,18 +47,18 @@ app.get("/api/v1/longshotleague/teams", (request, response) => {
     });
 });
 
-app.post("/api/v1/longshotleague/new_team", (request, response) => {
-  const newTeam = request.body;
+// app.post("/api/v1/longshotleague/new_team", (request, response) => {
+//   const newTeam = request.body;
 
-  database("teams")
-    .insert({ ...newTeam }, "id")
-    .then(team => {
-      response.status(201).json("new team successfully added!");
-    })
-    .catch(error => {
-      response.status(500).json({ error: error.message });
-    });
-});
+//   database("teams")
+//     .insert({ ...newTeam }, "id")
+//     .then(team => {
+//       response.status(201).json("new team successfully added!");
+//     })
+//     .catch(error => {
+//       response.status(500).json({ error: error.message });
+//     });
+// });
 
 app.patch("/api/v1/longshotleague/team/", (request, response) => {
   let teamData = request.body;
@@ -100,8 +80,21 @@ app.patch("/api/v1/longshotleague/team/", (request, response) => {
   }
 });
 
+app.post("/api/v1/longshotleague/new_bonus/", (request, response) => {
+  let bonusData = request.body;
+
+  database("bonus")
+    .insert({ ...bonusData }, "id")
+    .then(bonus => {
+      response.status(201).json("new bonus successfully added!");
+    })
+    .catch(error => {
+      response.status(500).json({ error: error.message });
+    });
+});
+
 app.listen(app.get("port"), () => {
-  console.log(`visitor tracker is running on ${app.get("port")}.`);
+  console.log(`longshot league is running on ${app.get("port")}.`);
 });
 
 module.exports = app;

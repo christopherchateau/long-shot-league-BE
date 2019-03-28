@@ -29,6 +29,7 @@ const createStandings = (knex, player) => {
 exports.seed = function(knex, Promise) {
   return knex("teams")
     .del()
+    .then(() => knex("bonus").del())
     .then(() => knex("players").del())
     .then(() => {
       const playerPromises = players.map(player => {

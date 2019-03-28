@@ -20,7 +20,7 @@ exports.up = function(knex, Promise) {
       table.increments("id").primary();
       table.integer("player_id").unsigned();
       table.foreign("player_id").references("players.id");
-      table.string("bonus");
+      table.string("name");
       table.integer("points");
       table.string("description");
     })
@@ -30,7 +30,7 @@ exports.up = function(knex, Promise) {
 exports.down = function(knex, Promise) {
   return Promise.all([
     knex.schema.dropTable("teams"),
-    knex.schema.dropTable("players"),
-    knex.schema.dropTable("bonus")
+    knex.schema.dropTable("bonus"),
+    knex.schema.dropTable("players")
   ]);
 };
