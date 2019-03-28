@@ -80,6 +80,14 @@ app.patch("/api/v1/longshotleague/team/", (request, response) => {
   }
 });
 
+app.get("/api/v1/longshotleague/bonus", (request, response) => {
+  database("bonus")
+    .select()
+    .then(visitor => {
+      response.status(200).json(visitor);
+    });
+});
+
 app.post("/api/v1/longshotleague/new_bonus/", (request, response) => {
   let bonusData = request.body;
 
