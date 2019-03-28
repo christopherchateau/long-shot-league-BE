@@ -39,6 +39,26 @@ app.post("/api/v1/longshotleague/new_player", (request, response) => {
     });
 });
 
+app.patch("/api/v1/longshotleague/player/", (request, response) => {
+  // let playerData = request.body;
+  // {
+  //   database("players")
+  //     .where("name", playerData.name)
+  //     .update({ points: playerData.points })
+  //     .update({ is_eliminated: playerData.is_eliminated })
+  //     .then(numEdited => {
+  //       if (numEdited !== 0) {
+  //         response
+  //           .status(202)
+  //           .json(`Total of ${playerData.name} sucessfully updated!`);
+  //       }
+  //     })
+  //     .catch(error => {
+  //       response.status(500).json({ error: error.message });
+  //     });
+  // }
+});
+
 app.get("/api/v1/longshotleague/teams", (request, response) => {
   database("teams")
     .select()

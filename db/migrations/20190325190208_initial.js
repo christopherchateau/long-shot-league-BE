@@ -14,6 +14,15 @@ exports.up = function(knex, Promise) {
       table.string("drafted_by");
       table.integer("points");
       table.boolean("is_eliminated");
+    }),
+
+    knex.schema.createTable("bonus", table => {
+      table.increments("id").primary();
+      table.integer("player_id").unsigned();
+      table.foreign("player_id").references("players.id");
+      table.string("bonus");
+      table.integer("points");
+      table.string("description");
     })
   ]);
 };
@@ -21,6 +30,7 @@ exports.up = function(knex, Promise) {
 exports.down = function(knex, Promise) {
   return Promise.all([
     knex.schema.dropTable("teams"),
-    knex.schema.dropTable("players")
+    knex.schema.dropTable("players"),
+    knex.schema.dropTable("bonus")
   ]);
 };
