@@ -88,13 +88,27 @@ app.get("/api/v1/longshotleague/bonus", (request, response) => {
     });
 });
 
-app.post("/api/v1/longshotleague/new_bonus/", (request, response) => {
+app.post("/api/v1/longshotleague/bonus/", (request, response) => {
   let bonusData = request.body;
 
   database("bonus")
     .insert({ ...bonusData }, "id")
     .then(bonus => {
       response.status(201).json("new bonus successfully added!");
+    })
+    .catch(error => {
+      response.status(500).json({ error: error.message });
+    });
+});
+
+app.delete("/api/v1/longshotleague/bonus/", (request, response) => {
+  let { id } = request.body;
+
+  database("bonus")
+    .where("id", id)
+    .del()
+    .then(bonus => {
+      response.status(202).json(`'${bonus}' successfully deleted`);
     })
     .catch(error => {
       response.status(500).json({ error: error.message });
