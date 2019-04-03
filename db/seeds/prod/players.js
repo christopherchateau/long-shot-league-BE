@@ -16,8 +16,8 @@ const createStandings = (knex, player) => {
           return knex("teams").insert({
             name: team.name,
             drafted_by: player[0].name,
-            points: team.points,
-            is_eliminated: team.eliminated,
+            points: 0,
+            is_eliminated: false,
             player_id: player[0].id
           });
         }
