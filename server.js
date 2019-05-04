@@ -26,19 +26,6 @@ app.get("/api/v1/longshotleague/players", (request, response) => {
     });
 });
 
-// app.post("/api/v1/longshotleague/new_player", (request, response) => {
-//   const newPlayer = request.body;
-
-//   database("players")
-//     .insert({ ...newPlayer }, "id")
-//     .then(player => {
-//       response.status(201).json("new player successfully added!");
-//     })
-//     .catch(error => {
-//       response.status(500).json({ error: error.message });
-//     });
-// });
-
 app.get("/api/v1/longshotleague/teams", (request, response) => {
   database("teams")
     .select()
@@ -46,19 +33,6 @@ app.get("/api/v1/longshotleague/teams", (request, response) => {
       response.status(200).json(visitor);
     });
 });
-
-// app.post("/api/v1/longshotleague/new_team", (request, response) => {
-//   const newTeam = request.body;
-
-//   database("teams")
-//     .insert({ ...newTeam }, "id")
-//     .then(team => {
-//       response.status(201).json("new team successfully added!");
-//     })
-//     .catch(error => {
-//       response.status(500).json({ error: error.message });
-//     });
-// });
 
 app.patch("/api/v1/longshotleague/team/", (request, response) => {
   let teamData = request.body;
