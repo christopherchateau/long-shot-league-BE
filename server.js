@@ -9,97 +9,76 @@ app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(function(req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*')
+	res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
 	res.header(
 		'Access-Control-Allow-Headers',
-		'Origin, X-Requested-With, Content-Type, Accept'
+		'Origin, X-Requested-With, Content-Type, Accept, Authorization'
 	)
 	next()
 })
 
 app.set('port', process.env.PORT || 3001)
 
-app.get('/api/v1/longshotleague/players', (request, response) => {
+app.get('/api/v1/longshotleague/players', (req, resp) =>
 	database('players')
 		.select()
-		.then((visitor) => {
-			response.status(200).json(visitor)
-		})
-		.catch((error) => {
-			response.status(500).json({ error: error.message })
-		})
-})
+		.then(visitor => resp.status(200).json(visitor))
+		.catch(error => resp.status(500).json({ error: error.message }))
+)
 
-app.get('/api/v1/longshotleague/teams', (request, response) => {
+app.get('/api/v1/longshotleague/teams', (req, resp) =>
 	database('teams')
 		.select()
-		.then((visitor) => {
-			response.status(200).json(visitor)
-		})
-		.catch((error) => {
-			response.status(500).json({ error: error.message })
-		})
-})
+		.then(visitor => resp.status(200).json(visitor))
+		.catch(error => resp.status(500).json({ error: error.message }))
+)
 
-app.patch('/api/v1/longshotleague/team/', (request, response) => {
-	let teamData = request.body
+app.patch('/api/v1/longshotleague/team/', (req, resp) => {
+	const { name, points, is_eliminated } = req.body
 	{
 		database('teams')
-			.where('name', teamData.name)
-			.update({ points: teamData.points })
-			.update({ is_eliminated: teamData.is_eliminated })
-			.then((numEdited) => {
+			.where('name', name)
+			.update({ points })
+			.update({ is_eliminated })
+			.then(numEdited => {
 				if (numEdited !== 0) {
-					response
-						.status(202)
-						.json(`Total of ${teamData.name} sucessfully updated!`)
+					resp.status(202).json(
+						`Total of ${name} sucessfully updated!`
+					)
 				}
 			})
-			.catch((error) => {
-				response.status(500).json({ error: error.message })
-			})
+			.catch(error => resp.status(500).json({ error: error.message }))
 	}
 })
 
-app.get('/api/v1/longshotleague/bonus', (request, response) => {
+app.get('/api/v1/longshotleague/bonus', (req, resp) =>
 	database('bonus')
 		.select()
-		.then((visitor) => {
-			response.status(200).json(visitor)
-		})
-		.catch((error) => {
-			response.status(500).json({ error: error.message })
-		})
-})
+		.then(visitor => resp.status(200).json(visitor))
+		.catch(error => resp.status(500).json({ error: error.message }))
+)
 
-app.post('/api/v1/longshotleague/bonus/', (request, response) => {
-	let bonusData = request.body
-
+app.post('/api/v1/longshotleague/bonus/', (req, resp) =>
 	database('bonus')
-		.insert({ ...bonusData }, 'id')
-		.then((bonus) => {
-			response.status(201).json('new bonus successfully added!')
-		})
-		.catch((error) => {
-			response.status(500).json({ error: error.message })
-		})``
-})
+		.insert({ ...req.body }, 'id')
+		.then(bonus =>
+			resp.status(201).json(`new bonus successfully added! - ${bonus}`)
+		)
+		.catch(error => resp.status(500).json({ error: error.message }))
+)
 
-app.delete('/api/v1/longshotleague/bonus/', (request, response) => {
-	let { id } = request.body
+app.delete('/api/v1/longshotleague/bonus/', (req, resp) => {
+	const { id } = req.body
 
 	database('bonus')
 		.where('id', id)
 		.del()
-		.then((bonus) => {
-			response.status(202).json(`'${bonus}' successfully deleted`)
-		})
-		.catch((error) => {
-			response.status(500).json({ error: error.message })
-		})
+		.then(bonus => resp.status(202).json(`'${bonus}' successfully deleted`))
+		.catch(error => resp.status(500).json({ error: error.message }))
 })
 
-app.listen(app.get('port'), () => {
+app.listen(app.get('port'), () =>
 	console.log(`longshot league is running on ${app.get('port')}.`)
-})
+)
 
 module.exports = app
