@@ -1,12 +1,12 @@
 exports.up = function(knex, Promise) {
 	return Promise.all([
-		knex.schema.createTable('players', (table) => {
+		knex.schema.createTable('players', table => {
 			table.increments('id').primary()
 			table.string('name')
 			table.string('bonus_points')
 		}),
 
-		knex.schema.createTable('teams', (table) => {
+		knex.schema.createTable('teams', table => {
 			table.increments('id').primary()
 			table.integer('player_id').unsigned()
 			table.foreign('player_id').references('players.id')
@@ -16,7 +16,7 @@ exports.up = function(knex, Promise) {
 			table.boolean('is_eliminated')
 		}),
 
-		knex.schema.createTable('bonus', (table) => {
+		knex.schema.createTable('bonus', table => {
 			table.increments('id').primary()
 			table.integer('player_id').unsigned()
 			table.foreign('player_id').references('players.id')

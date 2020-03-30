@@ -10,8 +10,8 @@ const createStandings = (knex, player) => {
 			},
 			['name', 'id']
 		)
-		.then((player) => {
-			let teamPromises = teams.map((team) => {
+		.then(player => {
+			let teamPromises = teams.map(team => {
 				if (team.draftedBy === player[0].name) {
 					return knex('teams').insert({
 						name: team.name,
@@ -32,11 +32,11 @@ exports.seed = function(knex, Promise) {
 		.then(() => knex('bonus').del())
 		.then(() => knex('players').del())
 		.then(() => {
-			const playerPromises = players.map((player) => {
+			const playerPromises = players.map(player => {
 				return createStandings(knex, player)
 			})
 			return Promise.all(playerPromises)
 		})
 		.then(() => console.log('Great Success!!'))
-		.catch((error) => console.log(`Error seeding data: ${error}`))
+		.catch(error => console.log(`Error seeding data: ${error}`))
 }
