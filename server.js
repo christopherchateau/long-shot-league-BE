@@ -38,8 +38,7 @@ app.patch('/api/v1/longshotleague/team/', (req, resp) => {
 	{
 		database('teams')
 			.where('name', name)
-			.update({ points })
-			.update({ is_eliminated })
+			.update({ points, is_eliminated  })
 			.then(numEdited => {
 				if (numEdited !== 0) {
 					resp.status(202).json(
