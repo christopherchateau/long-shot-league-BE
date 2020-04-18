@@ -3,7 +3,6 @@ exports.up = function(knex, Promise) {
 		knex.schema.createTable('players', table => {
 			table.increments('id').primary()
 			table.string('name')
-			table.string('bonus_points')
 		}),
 
 		knex.schema.createTable('teams', table => {

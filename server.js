@@ -7,7 +7,7 @@ const database = require('knex')(config)
 
 app.use(express.static('public'))
 app.use(bodyParser.json())
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*')
 	res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
 	res.header(
@@ -38,14 +38,10 @@ app.patch('/api/v1/longshotleague/team/', (req, resp) => {
 	{
 		database('teams')
 			.where('name', name)
-			.update({ points, is_eliminated  })
-			.then(numEdited => {
-				if (numEdited !== 0) {
-					resp.status(202).json(
-						`Total of ${name} sucessfully updated!`
-					)
-				}
-			})
+			.update({ points, is_eliminated })
+			.then(() =>
+				resp.status(202).json(`${name} data sucessfully updated!`)
+			)
 			.catch(error => resp.status(500).json({ error: error.message }))
 	}
 })
