@@ -1,7 +1,7 @@
 const players = [
 	{
-		name: 'Chris',
-		teams: ['Duke', 'Syracuse', 'New Mexico St', 'Iona'],
+		name: 'Buns',
+		teams: ['Dukey', 'Syracuse', 'New Mexico St', 'Iona'],
 	},
 	{
 		name: 'Brewers',

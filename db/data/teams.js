@@ -1,8 +1,8 @@
 const teams = [
 	{
-		name: 'Duke',
+		name: 'Dukey',
 		seed: 1,
-		draftedBy: 'Chris',
+		draftedBy: 'Buns',
 	},
 	{
 		name: 'Virginia',
@@ -142,7 +142,7 @@ const teams = [
 	{
 		name: 'Syracuse',
 		seed: 8,
-		draftedBy: 'Chris',
+		draftedBy: 'Buns',
 	},
 	{
 		name: 'Utah St',
@@ -227,7 +227,7 @@ const teams = [
 	{
 		name: 'New Mexico St',
 		seed: 12,
-		draftedBy: 'Chris',
+		draftedBy: 'Buns',
 	},
 	{
 		name: 'Liberty',
@@ -307,7 +307,7 @@ const teams = [
 	{
 		name: 'Iona',
 		seed: 16,
-		draftedBy: 'Chris',
+		draftedBy: 'Buns',
 	},
 	{
 		name: 'Gardner-Webb',
