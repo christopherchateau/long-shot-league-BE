@@ -6,6 +6,7 @@ const pool = new Pool({
 		rejectUnauthorized: false,
 	},
 })
+console.log('asdf', pool)
 
 const express = require('express')
 const app = express()
