@@ -1,11 +1,11 @@
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
+
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const environment = process.env.NODE_ENV || 'development'
 const config = require('./knexfile')[environment]
 const database = require('knex')(config)
-
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
 
 app.use(express.static('public'))
 app.use(bodyParser.json())
