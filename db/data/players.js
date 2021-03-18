@@ -1,67 +1,39 @@
 const players = [
 	{
-		name: 'Buns',
-		teams: ['Dukey', 'Syracuse', 'New Mexico St', 'Iona'],
-	},
-	{
-		name: 'Brewers',
-		teams: ['Kentucky', 'Seton Hall', 'Mississippi St', 'North Dakota St'],
-	},
-	{
-		name: 'Justin',
-		teams: ['Murray St', 'Yale', 'Arizona St', 'Fairleigh Dickinson'],
-	},
-	{
-		name: 'Brent',
-		teams: ['Gonzaga', 'Buffalo', 'Maryland', 'Gardner-Webb'],
-	},
-	{
-		name: 'Alex',
-		teams: ['Houston', 'Saint Louis', 'Iowa', 'Abilene-Christian'],
-	},
-	{
-		name: 'Matt',
-		teams: ['Virginia', 'Nevada', 'Iowa St', 'Bradley'],
-	},
-	{
-		name: 'Reed',
-		teams: ['North Carolina', 'Louisville', "St Mary's", 'Colgate'],
-	},
-	{
-		name: 'Todd',
-		teams: ['Wofford', 'Belmont', 'UC Irvine', 'Montana'],
-	},
-	{
-		name: 'Laura',
-		teams: ['Michigan St', 'Kansas St', 'Washington', 'VCU'],
+		name: 'Chris',
 	},
 	{
 		name: 'Scott',
-		teams: ['Tennessee', 'Marquette', 'Ohio St', 'Central Florida'],
 	},
 	{
-		name: 'Doherty',
-		teams: ['Kansas', 'Virginia Tech', 'Florida', 'Georgia St'],
+		name: 'Kirkwood',
 	},
 	{
-		name: 'Kevin',
-		teams: ['Purdue', 'Wisconsin', 'Northern Kentucky', 'Baylor'],
+		name: 'Brian',
 	},
 	{
-		name: 'Kristin',
-		teams: ['Michigan', 'Auburn', 'Minnesota', 'Mississippi'],
+		name: 'Matt',
 	},
 	{
-		name: 'Bmase',
-		teams: ['Florida St', 'Texas Tech', 'Liberty', 'Utah St'],
+		name: 'Batey',
+	},
+	{
+		name: 'Brewers',
+	},
+	{
+		name: 'Alex',
 	},
 	{
 		name: 'Fraske',
-		teams: ['Villanova', 'Cincinnati', 'Vermont', 'Old Dominion'],
 	},
 	{
-		name: 'Dan',
-		teams: ['LSU', 'Oregon', 'Oklahoma', 'Northeastern'],
+		name: 'Brent',
+	},
+	{
+		name: 'Todd',
+	},
+	{
+		name: 'Reed',
 	},
 ]
 

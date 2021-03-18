@@ -6,7 +6,6 @@ const createStandings = (knex, player) => {
 		.insert(
 			{
 				name: player.name,
-				bonus_points: player.bonus,
 			},
 			['name', 'id']
 		)
@@ -26,7 +25,7 @@ const createStandings = (knex, player) => {
 		})
 }
 
-exports.seed = function(knex, Promise) {
+exports.seed = function (knex, Promise) {
 	return knex('teams')
 		.del()
 		.then(() => knex('bonus').del())
