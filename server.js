@@ -1,13 +1,3 @@
-const { Pool } = require('pg')
-
-const pool = new Pool({
-	connectionString: process.env.DATABASE_URL,
-	ssl: {
-		rejectUnauthorized: false,
-	},
-})
-console.log('asdf', pool)
-
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
