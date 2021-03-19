@@ -1,7 +1,6 @@
 module.exports = {
 	development: {
 		client: 'pg',
-		ssl: { rejectUnauthorized: false },
 		connection: 'postgres://localhost/longshotleague',
 		migrations: {
 			directory: './db/migrations',
@@ -13,8 +12,7 @@ module.exports = {
 	},
 	production: {
 		client: 'pg',
-		ssl: { rejectUnauthorized: false },
-		connection: process.env.DATABASE_URL,
+		connection: process.env.DATABASE_URL + `?ssl=true`,
 		migrations: {
 			directory: './db/migrations',
 		},
